@@ -1,11 +1,9 @@
-// Configuración de los personajes disponibles.
-// Cada uno tiene: id, nombre, tagline, avatar (emoji), systemPrompt y theme (colores propios).
-
 export const CHARACTERS = {
   jarvis: {
     id: "jarvis",
     name: "J.A.R.V.I.S.",
     tagline: "El asistente de Tony Stark",
+    worldLabel: "Torre Stark · Nueva York",
     avatar: "🤖",
     theme: {
       primary: "#4da3ff",
@@ -21,6 +19,7 @@ export const CHARACTERS = {
     id: "spiderman",
     name: "Spider-Man",
     tagline: "El trepamuros de Queens",
+    worldLabel: "Queens · Nueva York",
     avatar: "🕷️",
     theme: {
       primary: "#e23636",
@@ -36,6 +35,7 @@ export const CHARACTERS = {
     id: "goku",
     name: "Goku",
     tagline: "El guerrero Saiyan",
+    worldLabel: "Montaña Paoz · Universo Dragon Ball",
     avatar: "🐉",
     theme: {
       primary: "#ff8c1a",

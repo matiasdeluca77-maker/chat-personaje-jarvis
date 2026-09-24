@@ -1,11 +1,19 @@
 import { CHARACTERS } from "../characters.js";
+import { getActiveCharacterId } from "../state.js";
+import { isValidMessage, sendMessageToAPI } from "../utils.js";
 
 let conversationHistory = [];
-const activeCharacterId = "jarvis";
+let lastCharacterId = null;
 
 export function renderChat(container) {
+  const activeCharacterId = getActiveCharacterId();
   const character = CHARACTERS[activeCharacterId];
-  applyTheme(character.theme);
+  applyTheme(character);
+
+  if (lastCharacterId !== null && lastCharacterId !== activeCharacterId) {
+    conversationHistory = [];
+  }
+  lastCharacterId = activeCharacterId;
 
   container.innerHTML = `
     <section class="chat">
@@ -14,6 +22,7 @@ export function renderChat(container) {
         <div>
           <h1>${character.name}</h1>
           <p class="chat__tagline">${character.tagline}</p>
+          <p class="chat__world">${character.worldLabel}</p>
         </div>
       </div>
 
@@ -44,7 +53,7 @@ export function renderChat(container) {
   formEl.addEventListener("submit", async (e) => {
     e.preventDefault();
     const text = inputEl.value.trim();
-    if (!text) return;
+    if (!isValidMessage(text)) return;
 
     hideError(errorEl);
     addMessage(messagesEl, "user", text);
@@ -122,26 +131,13 @@ function hideError(errorEl) {
   errorEl.hidden = true;
 }
 
-async function sendMessageToAPI(characterId, message, history) {
-  const response = await fetch("/api/functions", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ characterId, message, history }),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Error del servidor: ${response.status}`);
-  }
-
-  const data = await response.json();
-  return data.reply;
-}
-
-function applyTheme(theme) {
+function applyTheme(character) {
   const root = document.documentElement;
+  const theme = character.theme;
   root.style.setProperty("--color-primary", theme.primary);
   root.style.setProperty("--color-secondary", theme.secondary);
   root.style.setProperty("--color-bubble-user", theme.bubbleUser);
   root.style.setProperty("--color-bubble-assistant", theme.bubbleAssistant);
   root.style.setProperty("--color-accent", theme.accent);
+  document.body.dataset.world = character.id;
 }

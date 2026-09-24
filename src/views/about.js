@@ -1,11 +1,13 @@
 export function renderAbout(container) {
+  document.body.removeAttribute("data-world");
+
   container.innerHTML = `
     <section class="about">
       <h1>Sobre este proyecto</h1>
       <p>
         Esta aplicación es un proyecto integrador que permite chatear con
-        J.A.R.V.I.S., la inteligencia artificial de Tony Stark, usando Google
-        Gemini AI como motor de conversación.
+        distintos personajes ficticios (J.A.R.V.I.S., Spider-Man y Goku) usando
+        Google Gemini AI como motor de conversación.
       </p>
       <p>
         Fue construida como Single Page Application, con routing propio usando

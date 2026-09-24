@@ -1,12 +1,14 @@
 export function renderHome(container) {
+  document.body.removeAttribute("data-world");
+
   container.innerHTML = `
     <section class="home">
-      <h1>Chateá con J.A.R.V.I.S.</h1>
+      <h1>Chateá con tu personaje favorito</h1>
       <p class="home__desc">
-        La inteligencia artificial de Tony Stark. Formal, eficiente y con un humor
-        británico muy particular. Preguntale lo que quieras.
+        Elegí entre J.A.R.V.I.S., Spider-Man o Goku, y charlá con ellos gracias a
+        Google Gemini AI. Cada uno responde con su propia personalidad.
       </p>
-      <a href="/chat" data-link class="btn-primary">Empezar a chatear</a>
+      <a href="/gallery" data-link class="btn-primary">Empezar a chatear</a>
     </section>
   `;
 }
