@@ -63,6 +63,10 @@ src/characters.js (datos de los personajes).
 4. Desplegá. Vercel construye el front y la función serverless
    automáticamente.
 
+## Aplicación desplegada
+
+🔗 https://chat-personaje-psi.vercel.app
+
 ## Capturas de pantalla
 
 ### Pantalla de inicio
@@ -79,8 +83,6 @@ src/characters.js (datos de los personajes).
 
 ### Vista responsive (mobile)
 ![Vista responsive](./screenshots/05-responsive.png)
-
-URL_DEL_DEPLOY_ACA
 
 ## Estructura del proyecto
 
